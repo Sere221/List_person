@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% if user.is_authenticated %}
+<h2 class="text-center">{{ title }}</h2>
+
+<form method="get" action="{% url 'home' %}">
+  <div class="text-center">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-dark">Поиск</button>
+  </div>
+</form>
+
+<div class="table-responsive small">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col"><a href="?order_by=slug" class="text-dark">V</a></th>
+              <th scope="col"><a href="?order_by=name" class="text-dark">V ФИО</a></th>
+              <th scope="col">Должность</th>
+              <th scope="col"><a href="?order_by=date" class="text-dark">V Дата приема</a></th>
+              <th scope="col"><a href="?order_by=salary" class="text-dark">V Оклад</a></th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for el in profile %}
+            <tr>
+              <td>{{ el.slug }}</td>
+              <td><a href="{% url 'profile_detail' el.slug %}">{{ el.name }}</a></td>
+              <td>{{ el.get_account_type_display }}</td>
+              <td>{{ el.date }}</td>
+              <td>{{ el.salary }} P</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+{% else %}
+<h1>Нужна авторизация!</h1>
+{% endif %}
+{% endblock %}

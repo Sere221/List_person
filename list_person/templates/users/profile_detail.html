@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block main %}
+  <div class="forms">
+    <h2>Кабинет пользователя</h2>
+    <div class="media text-muted pt-3">
+      <img class="mr-2 rounded" style="margin: 20px; width: 128px; height: 128px;" src="{{ profile.images.url }}">
+      <h4>@{{ profile.user.username }}</h4>
+    </div>
+    <form>
+      <div>
+        <h2>{{ profile.name }}</h2>
+        <p>Дата приема на работу: {{ profile.date }}</p>
+        <p>Должность: {{ profile.get_account_type_display }}</p>
+        <p>Филиал г.{{ profile.get_filial_display }}</p>
+        <p>Отделение: {{ profile.get_department_display }}</p>
+        <p>Оклад: {{ profile.salary }} P</p>
+        {% if user.is_superuser %}
+        <button type="button" class="btn btn-dark me-2"><a href="{% url 'profile_edit' profile.slug %}" class="text-white">Изменить</a></button>
+        {% endif %}
+      </div>
+
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block main %}
+  <div class="forms1">
+    <h2>Кабинет пользователя</h2>
+    <div class="media text-muted pt-3">
+      <img class="mr-2 rounded" style="margin: 20px; width: 128px; height: 128px;" src="{{ user.profile.images.url }}">
+      <h2>{{ profile.name }}</h2>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+      <div>
+        <h3 class="mt-4">Изменить данные про пользователя</h3>
+        {% csrf_token %}
+        {{ update_user }}
+        {% if user.is_superuser %}
+        {{ img_profile }}
+        {% else %}
+        {{ img_profile_dis }}
+        {% endif %}
+        <button type="submit" class="btn btn-dark">Обновить</button>
+      </div>
+
+    </form>
+  </div>
+{% endblock %}

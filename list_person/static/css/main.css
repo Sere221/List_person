@@ -1,0 +1,39 @@
+form div{
+    padding: 10px;
+
+    label, input
+    {
+        width: 100%;
+        margin: 5px;
+    }
+}
+
+label[for="id_query"], label[for="id_filial"], label[for="id_account_type"], label[for="id_department"], #id_query{
+    width: auto;
+}
+
+.helptext{
+    display: none;
+}
+
+h2, h1{
+    padding: 10px
+}
+
+a:active, /* активная/посещенная ссылка */
+a:hover,  /* при наведении */
+a {
+  text-decoration: none;
+}
+
+.helptext, .errorlist{display:none;}
+
+form .text-center {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    form .text-center p, form button{
+        margin: 5px;
+    }
